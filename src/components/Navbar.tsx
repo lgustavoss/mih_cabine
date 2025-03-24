@@ -95,7 +95,7 @@ const Navbar = () => {
                 handleNavigation('/', 'produtos');
                 setIsMenuOpen(false);
               }}
-              className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors py-2"
+              className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors py-2 block text-center"
             >
               Produtos
             </button>
@@ -104,20 +104,20 @@ const Navbar = () => {
                 handleNavigation('/', 'sobre');
                 setIsMenuOpen(false);
               }}
-              className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors py-2"
+              className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors py-2 block text-center"
             >
               Sobre
             </button>
             <Link 
               to="/galeria" 
-              className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors py-2"
+              className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors py-2 block text-center"
               onClick={() => setIsMenuOpen(false)}
             >
               Galeria
             </Link>
             <Link 
               to="/contato" 
-              className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors py-2"
+              className="button-primary my-2 text-center"
               onClick={() => setIsMenuOpen(false)}
             >
               Solicitar Orçamento
