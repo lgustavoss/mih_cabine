@@ -35,13 +35,13 @@ const Navbar = () => {
       )}
     >
       <nav className="container mx-auto px-4 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <img 
             src={logo}
             alt="Mih Cabine Logo" 
             className="h-16 md:h-20"
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
