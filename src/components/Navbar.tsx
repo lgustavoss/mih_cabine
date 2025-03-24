@@ -117,7 +117,7 @@ const Navbar = () => {
             </Link>
             <Link 
               to="/contato" 
-              className="button-primary my-2 text-center"
+              className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Solicitar Orçamento

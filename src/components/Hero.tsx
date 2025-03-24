@@ -1,8 +1,28 @@
-
 import { Button } from "@/components/ui/button";
 import logo from '/imagens/logo_fundo_branco.png';
+import { Link, useNavigate } from 'react-router-dom'; // Importe o useNavigate
 
 const Hero = () => {
+  const navigate = useNavigate(); // Adicione o hook useNavigate
+  
+  // Função para navegar para uma seção na página inicial
+  const handleNavigation = (sectionId: string) => {
+    // Se já estiver na página inicial, apenas role para a seção
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Senão, navegue para a página inicial e depois role para a seção
+      navigate('/');
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-brand-orange/5 to-transparent pointer-events-none" />
@@ -20,12 +40,15 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#produtos" className="button-primary">
+              <button 
+                onClick={() => handleNavigation('produtos')} 
+                className="button-primary"
+              >
                 Ver produtos
-              </a>
-              <a href="#contato" className="button-secondary">
+              </button>
+              <Link to="/contato" className="button-secondary">
                 Solicitar orçamento
-              </a>
+              </Link>
             </div>
           </div>
           
