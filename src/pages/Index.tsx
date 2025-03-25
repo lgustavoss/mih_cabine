@@ -12,10 +12,11 @@ import totemRetro from '/imagens/totem_retro1.jpg';
 import plataforma360 from '/imagens/plataforma_360.jpg';
 import cabineCapaRevista from '/imagens/cabine_capa_revista1.jpg';
 import tunelInfinito from '/imagens/tunel_infinito1.jpg';
-import torreLed from '/imagens/torre_led1.jpg';
+import torreLed from '/imagens/torre_led.jpg';
 import pistaLed from '/imagens/pista_led.jpg';
 import barraLed from '/imagens/barra_led_plataforma.jpg';
-import sobreImagem from '/imagens/logo_fundo_branco.png';
+import sobreImagem from '/imagens/sobre.jpg';
+import EspelhoMagico from '/imagens/espelhomagico.jpg';
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -84,6 +85,16 @@ const Index = () => {
         "✨ O toque mágico que faltava no seu evento"
       ],
       imageUrl: tunelInfinito
+    },
+    {
+      title: "Espelho Mágico",
+      description: "Um espelho que reflete mais do que imagens: reflete emoções! Transforme cada clique em uma lembrança especial do seu evento.",
+      features: [
+        "✨ Reflexo interativo com animações e comandos divertidos",
+        "✨ Fotos personalizadas impressas na hora",
+        "✨ Experiência envolvente que encanta convidados de todas as idades"
+      ],
+      imageUrl: EspelhoMagico
     },
   ];
   
@@ -212,13 +223,19 @@ const Index = () => {
                   Nossa missão é transformar momentos em lembranças eternas, através de equipamentos de alta qualidade, 
                   atendimento personalizado e inovação constante.
                 </p>
+                <p className="text-muted-foreground mb-6">
+                  A MIH Cabine nasceu quando fomos a um evento e vimos uma cabine fotográfica. Nós adoramos!
+                  Ali, começou uma busca de muito estudo de mercado, até conseguirmos nossa primeira cabine.
+                  Através do olhar do Renato, abraçamos essa oportunidade e hoje estamos no mercado a quase 10 anos deixando um pouco da nossa história em cada evento e levando conosco cada festa linda realizada.
+                  Na direção de Renato e Danielle estamos construindo memórias, levando alegria e diversão para os nossos clientes, parceiros e amigos!
+                </p>
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-white rounded-lg p-4 shadow-sm">
-                    <div className="text-3xl font-bold text-brand-orange mb-2">100+</div>
+                    <div className="text-3xl font-bold text-brand-orange mb-2">350+</div>
                     <div className="text-sm text-muted-foreground">Eventos realizados</div>
                   </div>
                   <div className="bg-white rounded-lg p-4 shadow-sm">
-                    <div className="text-3xl font-bold text-brand-orange mb-2">5+</div>
+                    <div className="text-3xl font-bold text-brand-orange mb-2">10+</div>
                     <div className="text-sm text-muted-foreground">Anos de experiência</div>
                   </div>
                 </div>
