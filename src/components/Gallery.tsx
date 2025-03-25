@@ -2,17 +2,17 @@ import { useState } from 'react';
 import ImageModal from './ImageModal';
 
 interface GalleryProps {
-  images: string[];
+  media: { url: string; type: 'image' | 'video' }[];
 }
 
-const Gallery: React.FC<GalleryProps> = ({ images }) => {
+const Gallery: React.FC<GalleryProps> = ({ media }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string>('');
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
+  const [selectedMedia, setSelectedMedia] = useState<{ url: string; type: 'image' | 'video' } | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const openModal = (imageUrl: string, index: number) => {
-    setSelectedImage(imageUrl);
-    setSelectedImageIndex(index);
+  const openModal = (mediaItem: { url: string; type: 'image' | 'video' }, index: number) => {
+    setSelectedMedia(mediaItem);
+    setSelectedIndex(index);
     setIsModalOpen(true);
   };
 
@@ -21,52 +21,56 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
   };
 
   const goToNext = () => {
-    const nextIndex = (selectedImageIndex + 1) % images.length;
-    setSelectedImage(images[nextIndex]);
-    setSelectedImageIndex(nextIndex);
+    const nextIndex = (selectedIndex + 1) % media.length;
+    setSelectedMedia(media[nextIndex]);
+    setSelectedIndex(nextIndex);
   };
 
   const goToPrevious = () => {
-    const previousIndex = (selectedImageIndex - 1 + images.length) % images.length;
-    setSelectedImage(images[previousIndex]);
-    setSelectedImageIndex(previousIndex);
+    const previousIndex = (selectedIndex - 1 + media.length) % media.length;
+    setSelectedMedia(media[previousIndex]);
+    setSelectedIndex(previousIndex);
   };
 
   return (
     <div className="w-[90%] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {images.map((image, index) => (
+      {media.map((item, index) => (
         <div
           key={index}
           className="cursor-pointer overflow-hidden rounded-lg shadow-lg"
-          onClick={() => openModal(image, index)}
+          onClick={() => openModal(item, index)}
         >
           <div className="aspect-square overflow-hidden relative">
-            <img
-              src={image}
-              alt={`Imagem ${index + 1}`}
-              className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
-              loading="lazy"
-              style={{ 
-                imageRendering: "high-quality", // Melhor qualidade em navegadores modernos
-                WebkitBackfaceVisibility: "hidden",
-                backfaceVisibility: "hidden",
-                transform: "translateZ(0)", // Força aceleração de hardware
-                willChange: "transform", // Otimiza para transformações
-                filter: "contrast(1.05) saturate(1.05)" // Leve aumento de contraste e saturação
-              }}
-            />
+            {item.type === 'image' ? (
+              <img
+                src={item.url}
+                alt={`Mídia ${index + 1}`}
+                className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+                loading="lazy"
+              />
+            ) : (
+              <video
+                src={item.url}
+                className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+                muted
+                loop
+                playsInline
+              />
+            )}
             <div className="absolute inset-0 bg-black opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
           </div>
         </div>
       ))}
 
-      <ImageModal
-        isOpen={isModalOpen}
-        imageUrl={selectedImage}
-        onClose={closeModal}
-        onNext={goToNext}
-        onPrevious={goToPrevious}
-      />
+      {selectedMedia && (
+        <ImageModal
+          isOpen={isModalOpen}
+          media={selectedMedia}
+          onClose={closeModal}
+          onNext={goToNext}
+          onPrevious={goToPrevious}
+        />
+      )}
     </div>
   );
 };

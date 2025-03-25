@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 interface ImageModalProps {
   isOpen: boolean;
-  imageUrl: string;
+  media: { url: string; type: 'image' | 'video' };
   onClose: () => void;
   onNext: () => void;
   onPrevious: () => void;
@@ -10,7 +10,7 @@ interface ImageModalProps {
 
 const ImageModal: React.FC<ImageModalProps> = ({
   isOpen,
-  imageUrl,
+  media,
   onClose,
   onNext,
   onPrevious
@@ -25,7 +25,6 @@ const ImageModal: React.FC<ImageModalProps> = ({
 
     // Adiciona o listener de eventos para as teclas
     const handleKeyDown = (event: KeyboardEvent) => {
-      console.log(event.key); // Debug: Verificar qual tecla foi pressionada
       if (event.key === 'Escape') {
         onClose();
       } else if (event.key === 'ArrowRight') {
@@ -57,11 +56,21 @@ const ImageModal: React.FC<ImageModalProps> = ({
           ←
         </button>
 
-        <img
-          src={imageUrl}
-          alt="Imagem ampliada"
-          className="max-w-full max-h-screen rounded-lg shadow-lg"
-        />
+        {media.type === 'image' ? (
+          <img
+            src={media.url}
+            alt="Mídia ampliada"
+            className="max-w-full max-h-screen rounded-lg shadow-lg"
+          />
+        ) : (
+          <video
+            src={media.url}
+            className="max-w-full max-h-screen rounded-lg shadow-lg"
+            controls
+            autoPlay
+            loop
+          />
+        )}
 
         <button
           onClick={onNext}
