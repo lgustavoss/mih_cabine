@@ -36,7 +36,7 @@ const Hero = () => {
               Experiências únicas, <span className="text-brand-orange">memórias eternas</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              A Mih Cabine transforma seu evento com nossas cabines fotográficas. Capture momentos especiais com tecnologia de ponta e divirta seus convidados.
+              A MIH Cabine transforma seu evento com nossas cabines fotográficas. Capture momentos especiais com tecnologia de ponta e divirta seus convidados.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -44,7 +44,7 @@ const Hero = () => {
                 onClick={() => handleNavigation('produtos')} 
                 className="button-primary"
               >
-                Ver produtos
+                Ver serviços
               </button>
               <Link to="/contato" className="button-secondary">
                 Solicitar orçamento

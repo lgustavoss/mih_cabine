@@ -21,42 +21,29 @@ const ContactSection = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  const generateWhatsAppMessage = (formData) => {
+    return encodeURIComponent(
+      `Novo Contato\n\n` +
+      `Nome: ${formData.name}\n` +
+      `Data do Evento: ${formData.data_evento}\n` +
+      `Telefone: ${formData.phone}\n` +
+      `Email: ${formData.email}\n` +
+      `Número de Convidados: ${formData.numero_convidados}\n` +
+      `Mensagem: ${formData.message}`
+    );
+};
   
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  const phoneNumber = "5561995249559"; // Coloque o número com DDD e código do país (55 para Brasil)
+  const message = generateWhatsAppMessage(formData);
 
-    // Formatando a mensagem para o WhatsApp
-    const whatsappMessage = `
-      *Novo Contato*%0A%0A
-      *Nome:* ${formData.name}%0A
-      *Data do Evento:* ${formData.data_evento}%0A
-      *Telefone:* ${formData.phone}%0A
-      *Email:* ${formData.email}%0A
-      *Número de Convidados:* ${formData.numero_convidados}%0A
-      *Mensagem:* ${formData.message}
-    `;
-    
-    // A URL do WhatsApp para abrir a conversa com a mensagem pré-preenchida
-    const whatsappUrl = `https://wa.me/555561995249559?text=${encodeURIComponent(whatsappMessage)}`;
-    
-    // Garantir que o link está correto
-    window.open(whatsappUrl, '_blank');
-
-    // Simulando a submissão do formulário
-    setTimeout(() => {
-      toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
-      setFormData({
-        name: '',
-        data_evento: '',
-        phone: '',
-        message: '',
-        email: '',
-        numero_convidados: ''
-      });
-      setIsSubmitting(false);
-    }, 1500);
-  };
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+  
+  window.open(whatsappURL, "_blank");
+};
 
   return (
     <section id="contato" className="py-20 bg-secondary/50">

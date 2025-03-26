@@ -49,7 +49,7 @@ const Navbar = () => {
             onClick={() => handleNavigation('/', 'produtos')}
             className="text-sm font-medium text-foreground hover:text-brand-orange transition-colors"
           >
-            Produtos
+            Serviços
           </button>
           <button
             onClick={() => handleNavigation('/', 'sobre')}

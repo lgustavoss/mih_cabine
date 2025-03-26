@@ -145,7 +145,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
               <span className="inline-block px-3 py-1 text-xs font-medium text-brand-orange bg-brand-orange/10 rounded-full mb-6">
-                Nossos produtos
+                Nossos serviços
               </span>
               <h2 className="heading-lg mb-4">Cabines fotográficas para todos os eventos</h2>
               <p className="text-muted-foreground">
@@ -220,15 +220,15 @@ const Index = () => {
                   com o compromisso de proporcionar experiências únicas e memoráveis para nossos clientes.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  Nossa missão é transformar momentos em lembranças eternas, através de equipamentos de alta qualidade, 
-                  atendimento personalizado e inovação constante.
-                </p>
-                <p className="text-muted-foreground mb-6">
                   A MIH Cabine nasceu quando fomos a um evento e vimos uma cabine fotográfica. Nós adoramos!
                   Ali, começou uma busca de muito estudo de mercado, até conseguirmos nossa primeira cabine.
                   Através do olhar do Renato, abraçamos essa oportunidade e hoje estamos no mercado a quase 10 anos deixando um pouco da nossa história em cada evento e levando conosco cada festa linda realizada.
                   Na direção de Renato e Danielle estamos construindo memórias, levando alegria e diversão para os nossos clientes, parceiros e amigos!
                 </p>
+                <p className="text-muted-foreground mb-6">
+                  Nossa missão é transformar momentos em lembranças eternas, através de equipamentos de alta qualidade, 
+                  atendimento personalizado e inovação constante.
+                </p>                
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-white rounded-lg p-4 shadow-sm">
                     <div className="text-3xl font-bold text-brand-orange mb-2">350+</div>

@@ -52,7 +52,7 @@ const Footer = () => {
                   onClick={() => handleNavigation('produtos')}
                   className="text-sm text-muted-foreground hover:text-brand-orange transition-colors"
                 >
-                  Produtos
+                  Serviços
                 </button>
               </li>
               <li>
@@ -85,7 +85,7 @@ const Footer = () => {
                 <svg className="h-5 w-5 text-muted-foreground mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="text-sm text-muted-foreground">(61)99462-2989</span>
+                <span className="text-sm text-muted-foreground">(61)99524-9559</span>
               </li>
               <li className="flex items-start">
                 <svg className="h-5 w-5 text-muted-foreground mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor">
