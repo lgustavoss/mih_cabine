@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,10 +15,46 @@ const ContactSection = () => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [minDate, setMinDate] = useState('');
+  
+  useEffect(() => {
+    // Calcular a data mínima (amanhã)
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    // Formatar a data no formato YYYY-MM-DD para o input
+    const formattedDate = tomorrow.toISOString().split('T')[0];
+    setMinDate(formattedDate);
+  }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    // Aplicar máscara especificamente para o campo de telefone
+    if (name === 'phone') {
+      const formattedPhone = formatPhoneNumber(value);
+      setFormData((prev) => ({ ...prev, [name]: formattedPhone }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+  
+  // Função para formatar o número de telefone
+  const formatPhoneNumber = (value: string) => {
+    // Remove todos os caracteres não numéricos
+    const phoneNumber = value.replace(/\D/g, '');
+    
+    // Aplica a formatação conforme a quantidade de dígitos
+    if (phoneNumber.length <= 2) {
+      return phoneNumber.length ? `(${phoneNumber}` : phoneNumber;
+    } else if (phoneNumber.length <= 7) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`;
+    } else if (phoneNumber.length <= 11) {
+      return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7)}`;
+    }
+    
+    // Limita a 11 dígitos (DDD + 9 dígitos)
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2, 7)}-${phoneNumber.slice(7, 11)}`;
   };
 
   const generateWhatsAppMessage = (formData) => {
@@ -173,7 +208,7 @@ const handleSubmit = (e) => {
                   
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-1">
+                    <label htmlFor="data_evento" className="block text-sm font-medium text-gray-900 mb-1">
                       Data do evento
                     </label>
                     <Input
@@ -183,6 +218,7 @@ const handleSubmit = (e) => {
                       type="date"
                       onChange={handleChange}
                       placeholder="Data do evento"
+                      min={minDate}
                       className="w-full"
                     />
                   </div>
