@@ -84,7 +84,7 @@ const handleSubmit = (e) => {
                   </div>
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-900">Email</p>
-                    <p className="mt-1 text-sm text-muted-foreground">contato@mihcabine.com</p>
+                    <p className="mt-1 text-sm text-muted-foreground">mhcabineeventos@gmail.com</p>
                   </div>
                 </div>
                 
