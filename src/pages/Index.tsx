@@ -16,7 +16,8 @@ import torreLed from '/imagens/torre_led.jpg';
 import pistaLed from '/imagens/pista_led.jpg';
 import barraLed from '/imagens/barra_led_plataforma.jpg';
 import sobreImagem from '/imagens/sobre.jpg';
-import EspelhoMagico from '/imagens/espelhomagico.jpg';
+import EspelhoMagico from '/imagens/espelhomagico.jpg'
+import aereo from '/imagens/aereo.jpg'
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -95,6 +96,16 @@ const Index = () => {
         "✨ Experiência envolvente que encanta convidados de todas as idades"
       ],
       imageUrl: EspelhoMagico
+    },
+    {
+      title: "Aéreo 360º",
+      description: "Uma experiência totalmente imersiva e inovadora. Vídeos em 360º para uma perspectiva única!",
+      features: [
+        "✨ Compartilhamento instantâneo",
+        "✨ Bordas que deixarão sua marca em evidência",
+        "✨ Uma boa música para animar ainda mais"
+      ],
+      imageUrl: aereo
     },
   ];
   
