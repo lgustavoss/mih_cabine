@@ -1,27 +1,31 @@
 import { Button } from "@/components/ui/button";
-import logo from '/imagens/logo_fundo_branco.png';
-import { Link, useNavigate } from 'react-router-dom'; // Importe o useNavigate
+import { Link, useNavigate } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
+import { Play, Pause } from "lucide-react";
+import videoIndex from "/imagens/videoindex.mp4";
 
 const Hero = () => {
-  const navigate = useNavigate(); // Adicione o hook useNavigate
-  
-  // Função para navegar para uma seção na página inicial
-  const handleNavigation = (sectionId: string) => {
-    // Se já estiver na página inicial, apenas role para a seção
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // Senão, navegue para a página inicial e depois role para a seção
-      navigate('/');
-      setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+  const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false); // Estado para detectar hover
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
   };
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => console.log("Erro ao reproduzir vídeo:", err));
+    }
+  }, []);
 
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
@@ -40,10 +44,7 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => handleNavigation('produtos')} 
-                className="button-primary"
-              >
+              <button onClick={() => navigate("/#produtos")} className="button-primary">
                 Ver serviços
               </button>
               <Link to="/contato" className="button-secondary">
@@ -53,15 +54,36 @@ const Hero = () => {
           </div>
           
           <div className="mt-16 relative w-full max-w-4xl animation-delay-300 animate-fade-in overflow-hidden rounded-xl">
-            <div className="aspect-[16/9] bg-black rounded-xl overflow-hidden shadow-2xl image-shine">
-              {/* Using the photo booth image as hero */}
-              <img 
-                src={logo}
-                alt="Mih Cabine Fotográfica" 
+            <div 
+              className="aspect-[16/9] bg-black rounded-xl overflow-hidden shadow-2xl image-shine relative"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <video 
+                ref={videoRef}
+                src={videoIndex}
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover"
               />
+              
+              {/* Botão de Play/Pause visível apenas no hover */}
+              <button 
+                onClick={togglePlayPause}
+                className={`absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition-all duration-300 rounded-xl ${
+                  isHovered ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                {isPlaying ? (
+                  <Pause className="text-white w-16 h-16" />
+                ) : (
+                  <Play className="text-white w-16 h-16" />
+                )}
+              </button>
             </div>
-            
+
             {/* Decorative elements */}
             <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-brand-orange/10 rounded-full blur-2xl" />
             <div className="absolute -left-8 -top-8 w-32 h-32 bg-brand-orange/10 rounded-full blur-3xl" />
