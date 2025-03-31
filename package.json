@@ -2,7 +2,7 @@
   "name": "mih_cabine",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://lgustavoss.github.io/mih_cabine",
+  "homepage": "https://www.mihcabine.com.br",
   "type": "module",
   "scripts": {
     "generate-images-json": "node generateImagesJson.js",
